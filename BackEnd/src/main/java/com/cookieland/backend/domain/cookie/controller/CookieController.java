@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -23,8 +24,9 @@ public class CookieController {
     private final CookieFindService cookieFindService;
 
     @PostMapping ("/cookies")
-    public ResponseEntity<CookieResponseDto.Response> create (final CookieRequestDto.@NotNull Create request) {
-        return ResponseEntity.ok(cookieCreateService.create(request));
+    public ResponseEntity<CookieResponseDto.Response> create (final CookieRequestDto.@NotNull Create request,
+                                                              final @NotNull List<Long> tagIds) {
+        return ResponseEntity.ok(cookieCreateService.create(request, tagIds));
     }
 
     @GetMapping ("/cookies/{id}")

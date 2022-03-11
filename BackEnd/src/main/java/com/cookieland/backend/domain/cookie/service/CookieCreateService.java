@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -22,7 +23,9 @@ public class CookieCreateService {
     private final TagFindService findService;
 
     // tag id 로 tag 찾아서 cookie create 할때 넣어서 제공할것
-    public CookieResponseDto.Response create (final CookieRequestDto.@NotNull Create request) {
-        return CookieResponseDto.Response.from(cookieService.create(request));
+    public CookieResponseDto.Response create(final CookieRequestDto.@NotNull Create request, final @NotNull List<Long> tagIds) {
+
+        return CookieResponseDto.Response.from(cookieService.create(request, tagIds));
     }
+
 }

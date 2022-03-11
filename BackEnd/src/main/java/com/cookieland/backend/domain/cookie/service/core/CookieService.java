@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -18,7 +19,8 @@ public class CookieService {
 
     private final CookieRepository cookieRepository;
 
-    public Cookie create (final CookieRequestDto.@NotNull Create request) {
+    public Cookie create(final CookieRequestDto.@NotNull Create request, final @NotNull List<Long> tagIds) {
+
         return cookieRepository.save(Cookie.toEntity(request));
     }
 
