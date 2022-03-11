@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional (readOnly = true)
 public class CookieFindService {
 
     private final CookieService cookieService;
@@ -20,4 +21,8 @@ public class CookieFindService {
     public CookieResponseDto.Response findById (final @NotNull Long id) {
        return CookieResponseDto.Response.from(cookieService.findById(id));
     }
+
+//    public List<CookieResponseDto.Response> findAll () {
+//        return Coo
+//    }
 }
